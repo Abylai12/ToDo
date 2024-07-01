@@ -11,6 +11,7 @@ const outValue1 = document.getElementById("text-input1");
 const outValue2 = document.getElementById("text-input2");
 const outValue3 = document.getElementById("text-input3");
 const outValue4 = document.getElementById("text-input4");
+
 // tasks for value
 const taskArray = [];
 
@@ -26,8 +27,8 @@ function myFunction() {
     status: x,
   };
   taskArray.push(newTask);
-  console.log(taskArray);
   draw();
+  remove();
 }
 btnSubmit.addEventListener("click", myFunction);
 
@@ -50,10 +51,9 @@ ${taskArray[i].name}
 </div>
 <div class="d-flex p-2">
 <i type="button" class="fa-solid fa-pen"></i>
-<i
-  type="button"
-  class="fa-solid fa-trash ms-2 text-danger"
-></i>
+<button id="btnRemove">
+Remove
+</button>
 </div>
 </div>
  `;
@@ -81,30 +81,14 @@ ${taskArray[i].name}
   }
 }
 
-let [ { sodfjdshf}]
 function remove() {
-  for (let i = 0; i < taskArray.length; i++){
-    switch (taskArray[i].name) {
-      case "TODO": {
-        outValue1.innerHTML += newTaskCard;
-        break;
-      }
-      case "INPROGRESS": {
-        outValue2.innerHTML += newTaskCard;
-        break;
-      }
-      case "DONE": {
-        outValue3.innerHTML += newTaskCard;
-        break;
-      }
-      case "BLOCKED": {
-        outValue4.innerHTML += newTaskCard;
-        break;
-      }
-      default: {
-        console.log("ALDAA GARLAA");
-      }
+  const removeBtn = document.getElementById("btnRemove");
+  for (let i = 0; i < taskArray.length; i++) {
+    if (taskArray[i].name == "here") {
+      taskArray.splice(i);
     }
   }
-  }
+  console.log(removeBtn);
 }
+
+removeBtn.addEventListener("click", remove);

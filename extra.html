@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extra</title>
+  </head>
+  <body>
+    <div class="header">Library</div>
+    <form id="submitInput" action="">
+      <label for="title">Title:</label>
+      <input type="text" id="formTitle" name="title" required />
+      <label for="author">Author:</label>
+      <input type="text" id="formAuthor" name="author" required />
+      <label for="page">Page:</label>
+      <input type="text" id="formPage" name="page" required />
+      <div class="read">
+        <label for="read">Read</label>
+        <input type="checkbox" id="formRead" name="read" value="" />
+      </div>
+      <input type="submit" id="submitBtn" value="Add Book" />
+    </form>
+    <div class="currentDisplay"></div>
+    <script src="./extra.js"></script>
+  </body>
+</html>
