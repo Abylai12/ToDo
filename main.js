@@ -6,31 +6,46 @@ function myFunction() {
 }
 // dom medeelel avah
 const btnSubmit = document.getElementById("btnSubmit");
+const btnMode = document.getElementById("btnMode");
 let taskName = document.getElementById("floatingInput");
+let taskStatus = document.getElementById("floatingSelect");
 const outValue1 = document.getElementById("text-input1");
 const outValue2 = document.getElementById("text-input2");
 const outValue3 = document.getElementById("text-input3");
 const outValue4 = document.getElementById("text-input4");
+let taskChangeIndex = -1;
 
 // tasks for value
 const taskArray = [];
 
 function myFunction() {
-  // selected status
-  let x = document.getElementById("floatingSelect").value;
-  console.log(x);
-  // selected status e.a TODO
-  // task Name value bol ugugdsun name
-  console.log(taskName.value);
   const newTask = {
     name: taskName.value,
-    status: x,
+    status: taskStatus.value,
   };
   taskArray.push(newTask);
+  taskName.value = "";
+  taskStatus.value = "TODO";
   draw();
-  remove();
 }
 btnSubmit.addEventListener("click", myFunction);
+
+function modeChange(changeIndex) {
+  taskName.value = taskArray[changeIndex].name;
+  taskStatus.value = taskArray[changeIndex].status;
+  taskChangeIndex = changeIndex;
+}
+
+btnMode.addEventListener("click", () => {
+  taskArray[taskChangeIndex].name = taskName.value;
+  taskArray[taskChangeIndex].status = taskStatus.value;
+  console.log(taskChangeIndex);
+  console.log(taskName.value);
+  console.log(taskStatus.value);
+  taskName.value = "";
+  taskStatus.value = "TODO";
+  draw();
+});
 
 function draw() {
   outValue1.innerHTML = "";
@@ -40,22 +55,22 @@ function draw() {
 
   for (let i = 0; i < taskArray.length; i++) {
     const newTaskCard = `
-      <div
-class="d-flex justify-content-between align-items-center p-2 m-2 rounded-4 bg-dark "
->
-<div class="d-flex align-items-center">
-<div class="toirog mx-2"></div>
-<h5 class="fw-lighter fs-5 ms-3 mt-2" id="text-input4">
-${taskArray[i].name}
-</h5>
-</div>
-<div class="d-flex p-2">
-<i type="button" class="fa-solid fa-pen"></i>
-<button id="btnRemove">
-Remove
-</button>
-</div>
-</div>
+      <div class="d-flex justify-content-between align-items-center border p-2 m-2 ${changecolor()} rounded-4  bg-dark">
+        <div class="d-flex align-items-center">
+        <div class="toirog mx-2"></div>
+        <h5 class="fw-lighter fs-5 ms-3 mt-2">
+        ${taskArray[i].name}
+        </h5>
+        </div>
+        <div class="d-flex p-2">
+        <button class = "btn" onclick="modeChange(${i})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i type="button" class="fa-solid fa-pen"></i>
+        </button>
+        <button class = "btn" onclick="deleteTask(${i})">
+          <i type="button"class="fa-solid fa-trash ms-2 text-danger"></i>
+        </button>
+        </div>
+      </div>
  `;
     switch (taskArray[i].status) {
       case "TODO": {
@@ -80,15 +95,24 @@ Remove
     }
   }
 }
-
-function remove() {
-  const removeBtn = document.getElementById("btnRemove");
-  for (let i = 0; i < taskArray.length; i++) {
-    if (taskArray[i].name == "here") {
-      taskArray.splice(i);
+function changecolor() {
+  switch (taskStatus.value) {
+    case "TODO": {
+      return "border-danger";
+    }
+    case "INPROGRESS": {
+      return "border-success";
+    }
+    case "DONE": {
+      return "border-primary";
+    }
+    case "BLOCKED": {
+      return "border-warning";
     }
   }
-  console.log(removeBtn);
 }
-
-removeBtn.addEventListener("click", remove);
+const deleteTask = (taskIndex) => {
+  console.log("Task deleted", taskIndex);
+  taskArray.splice(taskIndex);
+  draw();
+};
