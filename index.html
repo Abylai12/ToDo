@@ -40,7 +40,7 @@
               <div class="fs-4">
                 <i class="fa-solid fa-circle fa-2xs me-2"></i> To do
               </div>
-              <div class="fs-6 opacity-50">5</div>
+              <div class="fs-6 opacity-50" id="todoCount"></div>
             </div>
             <div class="card-body" id="text-input1">
              
@@ -55,7 +55,7 @@
               <div class="fs-4">
                 <i class="fa-solid fa-circle fa-2xs me-2" style="color: orange;"></i> In progress
               </div>
-              <div class="fs-6 opacity-50">5</div>
+              <div class="fs-6 opacity-50" id="inProgressCount"></div>
             </div>
             <div class="card-body" id="text-input2">
               
@@ -70,7 +70,7 @@
               <div class="fs-4">
                 <i class="fa-solid fa-circle fa-2xs me-2"style="color: green;"  ></i> Done
               </div>
-              <div class="fs-6 opacity-50">5</div>
+              <div class="fs-6 opacity-50" id="doneCount"></div>
             </div>
             <div class="card-body" id="text-input3">
               
@@ -85,7 +85,7 @@
               <div class="fs-4">
                 <i class="fa-solid fa-circle fa-2xs me-2"style="color: red;"></i> Blocked
               </div>
-              <div class="fs-6 opacity-50">5</div>
+              <div class="fs-6 opacity-50" id="blockedCount"></div>
             </div>
             <div class="card-body" id="text-input4">
              
@@ -93,10 +93,7 @@
           </div>
         </div>
       </div>
-      <div id="container">
-
-        <p class="card-body">Card-Body</p>
-      </div>
+      
       <!-- modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1"        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" >
@@ -130,11 +127,12 @@
         </div>
       </div>
     </div>
-   <p id="output-text">hh</p>
+ 
    <!-- <i
    type="button"
    class="fa-solid fa-trash ms-2 text-danger" id="removeBtn"
     ></i> -->
+
 
     <script src="./main.js"></script>
     <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
